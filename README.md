@@ -7,13 +7,9 @@
 ### Design
 I couldn't find any sort of Instagram (IG) API to retrieve follower count data, So I decided to create a simple Flask REST API that would scrape the follower count off of an IG users profile page. The API doesn't scrape data off of the IG website directly because of the dynamic way IG returns page results depending on the type of client making the request. As a workaround, the API instead scrapes off of a third-party site [www.picuki.com](www.picuki.com) to retrieve follower count data.
 
-<br>
-
 ### Limitations
 1. Requires hosting the Flask API somewhere
 2. Only works with public profiles
-
-<br>
 
 ### Run
 ```
@@ -36,8 +32,6 @@ pixlet push --api-token <YOUR API TOKEN> <YOUR DEVICE ID> instagram_followers.we
 2. As installation (displays in mobile app - will loop but data will be static)
 pixlet push --api-token <YOUR API TOKEN> --installation-id InstagramFollows <YOUR DEVICE ID> instagram_followers.webp
 ```
-
-<br>
 
 ### Automate
 1. Create a bash script that executes Steps 4 and 5
