@@ -1,6 +1,7 @@
 # tidbyt-instagram-followers
 > Display the follower count of an Instagram user on the Tidbyt
 
+![IMG_1866](https://user-images.githubusercontent.com/8815089/189522793-522c0d57-1e6d-4d0e-a6ca-0e77405f8671.jpg)
 <br>
 
 ### Design
