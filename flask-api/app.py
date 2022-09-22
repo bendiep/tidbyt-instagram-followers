@@ -1,12 +1,18 @@
 from flask import Flask, request
 import requests, json
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+
 from bs4 import BeautifulSoup
 from numerize import numerize
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET']) 
-def get_instagram_followers():
+@app.route('/picuki/profile', methods=['GET']) 
+def get_instagram_followers_picuki():
     user = request.args.get('user')
 
     try:
@@ -25,7 +31,43 @@ def get_instagram_followers():
         
         return json.dumps(response)
 
-    except:
+    except Exception as e:
+        print(e)
+        response = {
+            'user': user,
+            'follower_count': 'Unknown'
+        }
+        
+        return json.dumps(response)
+
+@app.route('/instagram/profile', methods=['GET']) 
+def get_instagram_followers():
+    user = request.args.get('user')
+
+    try:
+        if user is None:
+            return "Error: invalid request"
+
+        url = 'https://www.instagram.com/' + user
+
+        driver = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()))
+        driver.get(url)
+        page = driver.page_source
+        soup = BeautifulSoup(page, 'html.parser')
+        driver.quit()
+
+        content = soup.find('meta', {'name': 'description'})['content']
+        follower_count = content.split(',')[0].split(' ')[0]
+
+        response = {
+            'user': user,
+            'follower_count': follower_count
+        }
+
+        return json.dumps(response)
+
+    except Exception as e:
+        print(e)
         response = {
             'user': user,
             'follower_count': 'Unknown'

@@ -4,13 +4,14 @@
 <br>
 
 ### Design
-I couldn't find any sort of Instagram (IG) API to retrieve follower count data, So I decided to create a simple Flask REST API that would scrape the follower count off of an IG users profile page. The API doesn't scrape data off of the IG website directly because of the dynamic way IG returns page results depending on the type of client making the request. As a workaround, the API instead scrapes off of a third-party site [www.picuki.com](www.picuki.com) to retrieve follower count data.
+I couldn't find any sort of Instagram (IG) API to retrieve follower count data.<br>
+So I decided to create a simple Flask REST API that would scrape the follower count off of an IG users profile page.
 
 <br>
 
 ### Limitations
-1. Requires hosting the Flask API somewhere
-2. Only works with public profiles
+- Requires hosting the Flask API somewhere
+- Scraping API could possibly get IP blacklisted
 
 <br>
 
